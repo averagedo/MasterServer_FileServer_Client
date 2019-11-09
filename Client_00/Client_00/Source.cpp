@@ -16,72 +16,74 @@ void main()
 	//---------------------------
 	// Write here
 	//---------------------------
-	string recv;
-	string ip, port, name;
-	char send[300] = { 0 };
-	cin >> send;
-	TCP_Send("127.0.0.1", 2222, send, sizeof(send));
 
-	TCP_Recv_Master(recv);
-	cout << recv << endl;
+	//string recv;
+	//string ip, port, name;
+	//char send[300] = { 0 };
+	//cin >> send;
+	//TCP_Send("127.0.0.1", 2222, send, sizeof(send));
 
-	int ke = 0, ka = 0;
-	vector<string> lis;
-	for (int i = 0; i < recv.length(); i++)
-	{
-		if (ke == 0)
-		{
-			if (recv[i] == '\n')
-			{
-				ke++;
-				continue;
-			}
-			if (recv[i] == '_')
-			{
-				ka++;
-				continue;
-			}
-			if (ka == 0)
-				ip.push_back(recv[i]);
-			if (ka == 1)
-				port.push_back(recv[i]);
-		}
-		else
-		{
-			for (int j = i; j < recv.length(); j++)
-			{
-				if (recv[j] == '\n')
-				{
-					lis.push_back(name);
-					name.clear();
-					continue;
-				}
-				name.push_back(recv[j]);
-			}
-			break;
-		}
-	}
+	//TCP_Recv_Master(recv);
+	//cout << recv << endl;
 
-	for (int i = 0; i < lis.size(); i++)
-	{
-		cout << i + 1 << ". " << lis[i] << endl;
-	}
+	//int ke = 0, ka = 0;
+	//vector<string> lis;
+	//for (int i = 0; i < recv.length(); i++)
+	//{
+	//	if (ke == 0)
+	//	{
+	//		if (recv[i] == '\n')
+	//		{
+	//			ke++;
+	//			continue;
+	//		}
+	//		if (recv[i] == '_')
+	//		{
+	//			ka++;
+	//			continue;
+	//		}
+	//		if (ka == 0)
+	//			ip.push_back(recv[i]);
+	//		if (ka == 1)
+	//			port.push_back(recv[i]);
+	//	}
+	//	else
+	//	{
+	//		for (int j = i; j < recv.length(); j++)
+	//		{
+	//			if (recv[j] == '\n')
+	//			{
+	//				lis.push_back(name);
+	//				name.clear();
+	//				continue;
+	//			}
+	//			name.push_back(recv[j]);
+	//		}
+	//		break;
+	//	}
+	//}
 
-	cout << "Chon ten file: " << endl;
-	int choo;
-	cin >> choo;
+	//for (int i = 0; i < lis.size(); i++)
+	//{
+	//	cout << i + 1 << ". " << lis[i] << endl;
+	//}
 
-	name = lis[choo - 1];
+	//cout << "Chon ten file: " << endl;
+	//int choo;
+	//cin >> choo;
 
-	// Do may local nen chinh ip "127.0.0.1"
-	ip.clear();
-	ip = "127.0.0.1";
+	//name = lis[choo - 1];
 
-	//string str, ip, port, name;
-	///*cout << "Nhap ip, port, ten file can tai (ip_port_name): ";
-	//cin >> str;*/
-	//str = "127.0.0.1_4444_123.pdf";
-	/*Get_Ip_Port_Name(str, ip, port, name);*/
+	//// Do may local nen chinh ip "127.0.0.1"
+	//ip.clear();
+	//ip = "127.0.0.1";
+
+
+	string str, ip, port, name;
+	/*cout << "Nhap ip, port, ten file can tai (ip_port_name): ";
+	cin >> str;*/
+	str = "127.0.0.1_4444_123.pdf";
+	Get_Ip_Port_Name(str, ip, port, name);
 	int por = Fun_StrToInt(port);
 	UDP_SendSocket(ip.c_str(), por, (char*)name.c_str(), name.length());
 

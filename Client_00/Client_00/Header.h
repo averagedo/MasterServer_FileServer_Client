@@ -34,5 +34,5 @@ string Fun_IntToStr(unsigned int a);
 
 int Fun_StrToInt(string a);
 
-void Bef_Recvfrom(char[], int, int ,sockaddr_in );
+void Bef_Recvfrom(char[], int ,sockaddr_in );
 

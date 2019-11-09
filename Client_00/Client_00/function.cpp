@@ -346,7 +346,7 @@ int UDP_RecvSocket(unsigned short Port)
 	}
 
 	string temp;
-	int dem = 0, dea = 0, tt = 0;
+	int dem = 0, dea = 0;
 	sta = 0;
 	
 	while (1)
@@ -369,11 +369,10 @@ int UDP_RecvSocket(unsigned short Port)
 
 		sao = new char[iResult];
 		memcpy(sao, RecvBuf, iResult);
-		thread a(Bef_Recvfrom, sao, iResult, tt, SenderAddr);
+		thread a(Bef_Recvfrom, sao, iResult, SenderAddr);
 		a.detach();
 		//Bef_Recvfrom(sao, iResult, tt, SenderAddr);
 
-		tt++;
 
 
 		
@@ -506,7 +505,7 @@ int Fun_StrToInt(string a)
 	return it;
 }
 
-void Bef_Recvfrom(char* RecvBuf, int iResult, int ttl, sockaddr_in SenderAddr)
+void Bef_Recvfrom(char* RecvBuf, int iResult, sockaddr_in SenderAddr)
 {
 	
 	string nameFile;
@@ -642,10 +641,10 @@ void Bef_Recvfrom(char* RecvBuf, int iResult, int ttl, sockaddr_in SenderAddr)
 	
 	// Ghi file
 	//mtx1.lock();
-
+	int sst = Fun_StrToInt(stt);
 	while (1)
 	{
-		if (ttl == sta)
+		if (sst == sta)
 		{
 			break;
 		}
