@@ -1,0 +1,28 @@
+﻿  func.cpp
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(42,1): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\winsock2.h(1831): message : see declaration of 'inet_addr'
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(102,1): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\winsock2.h(2219): message : see declaration of 'gethostbyname'
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(106,1): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\winsock2.h(1849): message : see declaration of 'inet_ntoa'
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(116,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(174,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(199,10): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(245,12): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(381,1): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\string.h(133): message : see declaration of 'strcpy'
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(403,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(410,42): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(433,1): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\string.h(133): message : see declaration of 'strcpy'
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(464,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(479,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(540,1): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\winsock2.h(1831): message : see declaration of 'inet_addr'
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(727,107): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(822,105): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(769,1): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\winsock2.h(1849): message : see declaration of 'inet_ntoa'
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(790,7): warning C4101: 'j': unreferenced local variable
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\FileServer_00\func.cpp(889,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  FileServer_00.vcxproj -> C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\FileServer_00\x64\Debug\FileServer_00.exe
