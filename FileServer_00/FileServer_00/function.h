@@ -19,6 +19,7 @@ namespace fs = std::experimental::filesystem;
 
 struct AllFile
 {
+	int stt;
 	string Name;
 	string Ip;
 	unsigned int Port;
@@ -32,6 +33,8 @@ vector<string> Fun_ListIP();
 void NameOfDir(char input[], char out[]);
 
 string Fun_IntToStr(unsigned int a);
+
+int Fun_StrToInt(string a);
 
 int UpLoad(const char input[]);
 

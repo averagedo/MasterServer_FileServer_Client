@@ -83,8 +83,8 @@ void main()
 	//---------------------
 	// 
 
-	thread thr1(Thr_ConnectToServer, Ip);
-	thr1.detach();
+	/*thread thr1(Thr_ConnectToServer, Ip);
+	thr1.detach();*/
 
 	//Thr_UpLoad();
 

@@ -144,6 +144,20 @@ string Fun_IntToStr(unsigned int a)
 	return b;
 }
 
+int Fun_StrToInt(string a)
+{
+
+	int it = 0, at;
+	for (int i = 0; i < a.length(); i++)
+	{
+		at = (int)a[i] - 48;
+		it = (it + at) * 10;
+	}
+	it = it / 10;
+	return it;
+
+}
+
 int UpLoad(const char input[])
 {
 	char namedir[250] = { 0 };
@@ -636,9 +650,9 @@ int UDP_RecvSocket(unsigned short Port)
 			temp.push_back(RecvBuf[i]);
 		}
 
-		/*thread sen(Thr_SendataF, temp, SenderAddr);
-		sen.detach();*/
-		Thr_SendataF(temp, SenderAddr);
+		thread sen(Thr_SendataF, temp, SenderAddr);
+		sen.detach();
+		//Thr_SendataF(temp, SenderAddr);
 		temp.clear();
 	}
 
@@ -672,12 +686,13 @@ void Thr_SendataF(string temp,sockaddr_in SenderAddr)
 	if (temp[0] == '\r' && temp[1] == '\n')
 	{
 		
-		string  NameF, FiNa;
+		string  NameF, FiNa, stt;
 		int loibit = 0, loi = 0;
 
 		// Cau truc data \r\n...\r\n 
 		for (int i = 2; i < temp.length()-2; i++)
 		{
+			
 			if (temp[i] == '\t')
 			{
 				// Neu bit danh dau file cuoi =2 thi la yeu cau gui lai
@@ -685,11 +700,14 @@ void Thr_SendataF(string temp,sockaddr_in SenderAddr)
 					loibit = 1;
 				i = i + 3;
 				NameF.append("_xox_");
-				loi = 1;
+				loi++;
 			}
 			NameF.push_back(temp[i]);
 			if (loi == 0)
 				FiNa.push_back(temp[i]);
+			if (loi == 1)
+				stt.push_back(temp[i]);
+			
 			
 
 		}
@@ -735,10 +753,16 @@ void Thr_SendataF(string temp,sockaddr_in SenderAddr)
 		}
 		else
 		{
+			string fac_ip = inet_ntoa(SenderAddr.sin_addr);
+			unsigned int fac_port= ntohs(SenderAddr.sin_port);
+
+			string dun;
+			unsigned int Stt = Fun_StrToInt(stt);
+
 			mtx1.lock();
 			for (int i = 0; i < veve_str.size(); i++)
 			{
-				if (veve_str[i].Name.compare(FiNa) == 0)
+				if (veve_str[i].Name.compare(FiNa) == 0 && veve_str[i].Ip.compare(fac_ip) == 0 && veve_str[i].Port == fac_port)
 				{
 					for (int j = 0; j < veve_str[i].StrVec.size(); j++)
 					{
@@ -747,13 +771,77 @@ void Thr_SendataF(string temp,sockaddr_in SenderAddr)
 							cout << "Da gui thanh cong " << NameF << endl;
 							veve_str[i].StrVec.erase(veve_str[i].StrVec.begin() + j);
 							//cout << veve_str[i].StrVec.size() << endl;
+
+							// Luu thu tu cua file dau tien con sot lai trong kho
+							if (veve_str[i].StrVec.size() != 0)
+							{
+								for (int k = veve_str[i].StrVec[0].find_last_of('_') + 1; k < veve_str[i].StrVec[0].length(); k++)
+								{
+									dun.push_back(veve_str[i].StrVec[0][k]);
+								}
+								veve_str[i].stt = Fun_StrToInt(dun);
+								//cout << " dun " << dun << endl;
+							}
+
+							// Gui lai nhanh
+							if (Stt - veve_str[i].stt + 1 >= 3)
+							{
+								cout << "Gui lai nhanh" << endl;
+								string sss = Fun_IntToStr(veve_str[i].stt);
+								string cpy;
+								for (int x = 0; x <= NameF.find_last_of('_'); x++)
+								{
+									cpy.push_back(NameF[x]);
+								}
+								cpy.append(sss);
+
+								cpy.insert(0, "/");
+								cpy.insert(0, PATHFILESTORE);
+
+								ifstream iif(cpy, ios::binary);
+								if (!iif.is_open())
+								{
+									cout << "Loi mo file (iif)." << endl;
+									return;
+								}
+
+								string data;
+								char c;
+
+								while (1)
+								{
+									iif.get(c);
+									if (iif.eof())
+										break;
+									data.push_back(c);
+								}
+
+								SOCKET SendSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+								if (SendSocket == INVALID_SOCKET) {
+									cout << "socket failed with error: " << WSAGetLastError() << endl;
+									//WSACleanup();
+									return;
+								}
+
+								iResult = sendto(SendSocket, data.c_str(), data.length(), 0, (SOCKADDR*)&SenderAddr, sizeof(SenderAddr));
+								if (iResult == SOCKET_ERROR)
+								{
+									cout << "sendto failed with error: " << WSAGetLastError() << endl;
+									closesocket(SendSocket);
+									//WSACleanup();
+									return;
+								}
+							}
+
 							break;
 						}
 					}
+					
 					if (veve_str[i].StrVec.size() == 0)
 					{
 						veve_str.erase(veve_str.begin() + i);
 					}
+
 					break;
 				}
 			}
@@ -768,6 +856,7 @@ void Thr_SendataF(string temp,sockaddr_in SenderAddr)
 		A.Name = temp;
 		A.Ip = inet_ntoa(SenderAddr.sin_addr);
 		A.Port = ntohs(SenderAddr.sin_port);
+		A.stt = 0;
 	
 
 		temp.insert(0, PATHFILESTORE);
@@ -787,7 +876,17 @@ void Thr_SendataF(string temp,sockaddr_in SenderAddr)
 
 		Sleep(300);
 		int dme = 0;
-		int j;
+		int j, dex;
+
+		for (int i = 0; i < veve_str.size(); i++)
+		{
+			if (veve_str[i].Name.compare(A.Name) == 0 && veve_str[i].Ip.compare(A.Ip) == 0 && veve_str[i].Port == A.Port)
+			{
+				dex = i;
+				break;
+			}
+		}
+
 		for (int i = 0; i < vlis.size(); i++)
 		{
 			string sdm = Fun_IntToStr(dme);
@@ -811,6 +910,14 @@ void Thr_SendataF(string temp,sockaddr_in SenderAddr)
 				str.push_back(chr);
 			}
 			cout << str.length() << endl;
+
+			
+
+			while (1)
+			{
+				if (dme - veve_str[dex].stt < 10)
+					break;
+			}
 
 			SOCKET SendSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 			if (SendSocket == INVALID_SOCKET) {
