@@ -1,0 +1,11 @@
+﻿  Source.cpp
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\Client_00\Client_00\Source.cpp(4,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\Client_00\Client_00\Source.cpp(35,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\Client_00\Client_00\Source.cpp(60,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\Client_00\Client_00\Source.cpp(79,21): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+  1 of 494 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Client_00.vcxproj -> C:\Users\Admin\Documents\Core store\DoAn--MasterServer_FileServer_Client\Client_00\Release\Client_00.exe
